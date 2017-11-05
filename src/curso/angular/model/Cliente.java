@@ -26,6 +26,39 @@ public class Cliente implements Serializable {
 	private String endereco;
 
 	private String telefone;
+	
+	private String sexo;
+	
+	private Boolean ativo;
+	
+	private String interesse;
+	
+	public String getInteresse() {
+		return interesse;
+	}
+
+	public void setInteresse(String interesse) {
+		this.interesse = interesse;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		if(ativo == null) {
+			this.ativo = false;
+		}
+		this.ativo = ativo;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
 
 	public Long getId() {
 		return id;

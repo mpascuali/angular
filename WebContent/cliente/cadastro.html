@@ -48,9 +48,50 @@
 
 						</div>
 					</div>
+					
+					<div class="col-md-5">
+						<div class="form-group">
+							<label>Sexo</label> 
+							<select ng-model="cliente.sexo" class="form-control">
+								<option value="Masculino">Masculino</option>
+								<option value="Feminino">Feminino</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="col-md-2">
+						<div class="form-group">
+							<label>Ativo</label> 
+							<input type="checkbox" class="form-control" ng-model="cliente.ativo">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Banco de Dados</label> 
+							<input type="radio" class="form-control" name="interesse" ng-model="cliente.interesse" value="banco">
+						</div>
+					</div>
+					
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Programação</label> 
+							<input type="radio" class="form-control" name="interesse" ng-model="cliente.interesse" value="programacao" ng-checked="true">
+						</div>
+					</div>
+					
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Analise</label> 
+							<input type="radio" class="form-control" name="analise" ng-model="cliente.interesse" value="analise">
+						</div>
+					</div>
 				</div>
 
 				<button type="submit" class="btn btn-info btn-fill btn-wd">Cadastrar</button>
+				<button type="submit" class="btn btn-info btn-fill btn-wd" ng-click="$scope.cliente={}">Limpar</button>
 			</form>
 		</div>
 	</div>
