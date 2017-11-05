@@ -1,0 +1,376 @@
+<html ng-app="loja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AngularJS</title>
+<script type="text/javascript" src="resources/js/angular.min.js"></script>
+<script type="text/javascript" src="resources/js/angular-route.js"></script>
+<script type="text/javascript" src="resources/js/angular-resource.js"></script>
+<script type="text/javascript" src="resources/script/primeiroController.js"></script>
+<script type="text/javascript" src="resources/script/segundoController.js"></script>
+<style>
+	table tr:nth-child(odd){
+		background-color: #ffffff;
+	}
+	table tr:nth-child(even){
+		background-color: #ffffff;
+	}
+</style>
+</head>
+
+
+
+<body id="corpo">
+
+
+<div>
+	<label>Consulta: <input type="text" ng-model="criteria"></label>
+</div>
+
+<div ng-controller="filterController">
+	<table>
+		<thead>
+			<th>Nome</th>
+			<th>Sobrenome</th>
+			<th>Idade</th>
+		</thead>
+		
+		<tbody>
+			<tr ng-repeat="friend in totalFriends = (friends | filter:criteria)">
+				<td>{{friend.name}}</td>
+				<td>{{friend.lastName}}</td>
+				<td>{{friend.age}}</td>
+			</tr>
+		</tbody>
+	</table>
+		<h1>Total: {{totalFriends.length}}</h1>
+</div>
+
+<!-- 
+	<form>
+		Selecione:
+		<select ng-model="myVar">
+			<option value="dogs">Dogs
+			<option value="tuts">Tutorials
+			<option value="cars">Cars
+		</select>
+	</form>
+	
+	<div ng-switch="myVar">
+		<div ng-switch-when="dogs">
+			<h1>Dogs</h1>
+			<p>Selecionou Dogs</p>
+		</div>
+		<div ng-switch-when="tuts">
+			<h1>Tutorials</h1>
+			<p>Selecionou Tutorials</p>
+		</div>
+		<div ng-switch-when="cars">
+			<h1>Cars</h1>
+			<p>Selecionou Cars</p>
+		</div>
+	</div>
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+	<div ng-controller="formController">
+		<form novalidate>
+			First Name:<br>
+			<input type="text" ng-model="user.firstName"><br>
+			Last Name:<br>
+			<input type="text" ng-model="user.lastName">
+			<br><br>
+			<button ng-click="reset()">RESET</button>
+		</form>
+		<p>form = {{user}}</p>
+		<p>master = {{master}}</p>
+	</div>
+	
+	
+	
+	<form name="myForm">
+		<input name="myInput" ng-model="myInput" required>
+	</form>
+	
+	<p>Validando o form:</p>
+	<h1>{{myForm.myInput.$valid}}</h1>
+	
+	<br/>
+	<br/>
+	<br/>
+	
+	
+	<form name="myForm2">
+		<input type="email" name="myInput2" ng-model="myInput2" required>
+	</form>
+	
+	<p>Validando o e-mail:</p>
+	<h1>{{myForm2.myInput2.$valid}}</h1>
+	
+	
+	<form name="myForm3">
+		<p>Name:
+			<input name="myName" ng-model="myName" required>
+				<span ng-show="myForm3.myName.$touched && myForm3.myName.$invalid">Nome Obrigatório</span>
+		</p>
+		
+		<p>Address:
+			<input name="myAddress" ng-model="myAddress" required>
+				<span ng-show="myForm3.myAddress.$touched && myForm3.myAddress.$invalid">Endereço Obrigatório</span>
+		</p>
+	</form>
+
+ -->
+
+
+<!-- 
+	<input type="text" ng-value="100" ng-model="codPessoa">
+	<hr>
+	<button ng-click="getPorId();">Busca Por Id</button>
+	<hr>
+	<button ng-click="getPorTodos();">Busca Por Todos</button>
+	<hr>
+	<button ng-click="salva();">Salva</button>
+	<hr>
+	<button ng-click="deleta();">Deleta</button>
+
+	<hr>
+	<h1>{{objetoPessoa}}</h1>
+ -->
+
+<!--
+
+	<div ng-init="mySwitch=true">
+		<p>
+			<button ng-disabled="mySwitch">Click Me!</button>
+		</p>
+		
+		<p>
+			<input type="checkbox" ng-model="mySwitch"/>Button
+		</p>
+		
+		<p>
+			{{mySwitch}}
+		</p>
+	</div>
+
+ -->
+
+<!-- 
+
+	<div ng-controller="selectNames">
+		
+		<select ng-model="selectedName" ng-options="x for x in names" ></select>
+		
+	</div>
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+	<div ng-controller="selectNames">
+	
+		<select>
+			
+			<option ng-repeat="x in names | orderBy : 'x'">{{x}}</option>
+			
+		</select>
+		
+	</div>
+	
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+	<div ng-controller="listaCtrl">
+	
+		<select ng-model="nomeSelecionado">
+		
+			<option ng-repeat="x in lista" value="{{x.nome}}">{{x.nome}}</option>
+			
+			
+		</select>
+			
+		<h2>Selecionado: {{nomeSelecionado}}</h2>
+	
+	</div>
+	
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+	<div ng-controller="listaCtrl">
+	
+		<select ng-model="selecionado" ng-options="x for (x,y) in lista">
+		</select>
+			
+		<h2>Nome: {{selecionado.nome}}</h2>
+		<h2>Cidade: {{selecionado.cidade}}</h2>
+	
+	</div>
+
+
+ -->
+
+
+<!--
+
+	<div ng-controller="listaCtrl">
+		<table border="1">
+			<tr ng-repeat="x in lista">
+				<td>{{x.nome}}</td>
+				<td>{{x.cidade}}</td>
+			</tr>
+		</table>
+	</div>
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+	<div ng-controller="listaCtrl">
+		<table border="1">
+			<tr ng-repeat="x in lista | orderBy: 'cidade'">
+				<td>{{x.nome}}</td>
+				<td>{{x.cidade}}</td>
+			</tr>
+		</table>
+	</div>
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+	<div ng-controller="listaCtrl">
+		<table border="1">
+			<tr ng-repeat="x in lista">
+				<td>{{$index +1}}</td>
+				<td>{{x.nome}}</td>
+				<td>{{x.cidade}}</td>
+			</tr>
+		</table>
+	</div>
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+
+	<div ng-controller="listaCtrl">
+		<table>
+			<tr ng-repeat="x in lista">
+				<td ng-if="$odd" style="background-color: gray;">
+					{{x.nome}}
+				</td>
+				<td ng-if="$even">
+					{{x.nome}}
+				</td>
+				
+				<td ng-if="$odd" style="background-color: gray;">
+					{{x.cidade}}
+				</td>
+				<td ng-if="$even">
+					{{x.cidade}}
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+ -->
+	
+<!-- 
+		<button ng-controller="pegaResposta" ng-click="pegarResposta();">Pega</button>
+		<input type="text" id="res">
+		
+		<br/>
+		
+		<button ng-controller="pegaResposta2" ng-click="pegarResposta2();">Pega</button>
+		<input type="text" id="resposta2">
+		<input type="text" id="resposta3">
+		<input type="text" id="resposta4">
+	
+		<br/>
+		
+		<p>Chamando Servidor</p>
+		<div ng-controller="listaCtrl">
+			<ul>
+				<li ng-repeat="x in lista">{{x.nome}} - {{x.cidade}}</li>
+			</ul>
+		</div>
+	
+ -->
+	
+<!-- 
+	<div ng-controller="localizacao">
+		<p>Url: </p>
+		<h1>{{myUrl}}</h1>
+	</div>
+	
+
+	<div ng-controller="controllerTimeOut">
+		<p>Timeout services: </p>
+		<h1>{{timermsg}}</h1>
+	</div>
+	
+	<div ng-controller="intervalo">
+		<p>Hora</p>
+		<h1>{{intervalo}}</h1>
+	</div>
+ -->
+
+<!-- 
+	<h1>Rota Deep Linking Exemplo</h1>
+	
+	<div ng-controller="clientesCtrl">
+		<p>Clientes</p>
+		<ul>
+			<li ng-repeat="cli in clientes | orderBy :'nome'">{{cli.nome}} {{cli.sobreNome}}</li>
+		</ul>
+	</div>
+	
+	<div ng-controller="priceCtrl">
+		<h1>Preço: {{price * 2 | currency}}</h1>
+	</div>
+	
+	<div ng-controller="nomesCtrl">
+		<p>Nomes</p>
+		<ul>
+			<li ng-repeat="x in nomes | filter : 'a'">{{x}}</li>
+		</ul>
+	</div>
+	
+	<div ng-controller="nomesCtrl">
+		<p>
+			<input type="text" ng-model="test">
+		</p>
+		<ul>
+			<li ng-repeat="x in nomes | filter : test">{{x}}</li>
+		</ul>
+	</div>
+
+	<p>Clica para ordenar</p>
+	<div ng-controller="clientesCtrl2">
+		<table border="1" width="100%">
+			<tr>
+				<th ng-click="orderByMe('nome')">Nome</th>
+				<th ng-click="orderByMe('sobreNome')">Sobrenome</th>
+			</tr>
+			<tr ng-repeat="x in clientes | orderBy:myOrderBy">
+				<td>{{x.nome}}</td>
+				<td>{{x.sobreNome}}</td>
+			</tr>
+		</table>
+	</div>
+ -->
+</body>
+</html>
