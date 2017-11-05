@@ -90,6 +90,20 @@ app.config(function($routeProvider) {
 
 app.controller('clienteController', function($scope, $http) {
 	
+	$scope.cliente = {};
+	
+	//Salvar Cliente
+	$scope.salvarCliente = function() {
+		
+		$http.post("cliente/salvar", $scope.cliente).success(function(response) {
+			
+			$scope.cliente = {};
+			
+		}).error(function(data, status, headers, config) {
+			alert("Erro" + status)
+		});
+	};
+	
 	//Listar
 	$scope.listarClientes = function() {
 		$http.get("cliente/listar").success(function(response) {
@@ -108,7 +122,6 @@ app.controller('clienteController', function($scope, $http) {
 			erro("Error: " + status);
 		});
 	};
-	
 });
 
 

@@ -1,7 +1,10 @@
 package curso.angular.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,28 +16,46 @@ import curso.angular.dao.DaoInterface;
 import curso.angular.model.Cliente;
 
 @Controller
-@RequestMapping(value="/cliente")
-public class ClienteController extends DaoImplementacao<Cliente> implements 
-		DaoInterface<Cliente> {
+@RequestMapping(value = "/cliente")
+public class ClienteController extends DaoImplementacao<Cliente> implements DaoInterface<Cliente> {
 
-	public ClienteController(Class<Cliente> persistenceClass) { 
-		super(persistenceClass); 
+	public ClienteController(Class<Cliente> persistenceClass) {
+		super(persistenceClass);
 	}
-	  
-	@RequestMapping(value="listar", method=RequestMethod.GET, headers = "Accept=application/json") 
+
+	/**
+	 * Salva ou atualiza o cliente
+	 * 
+	 * @param jsonCliente
+	 * @return ResponseEntity
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "salvar", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity salvar(@RequestBody String jsonCliente) throws Exception {
+		Cliente cliente = new Gson().fromJson(jsonCliente, Cliente.class);
+
+		super.salvarOuAtualizar(cliente);
+		
+		return new ResponseEntity(HttpStatus.CREATED);
+
+	}
+
+	@RequestMapping(value = "listar", method = RequestMethod.GET, headers = "Accept=application/json")
 	@ResponseBody
 	public String listar() throws Exception {
-		return new Gson().toJson(super.lista()); 
+		return new Gson().toJson(super.lista());
 	}
-	
+
 	/**
 	 * Delete o cliente informado
+	 * 
 	 * @param codCliente
 	 * @return String vazia como resposta
 	 * @throws Exception
 	 */
-	@RequestMapping(value="deletar/{codCliente}", method=RequestMethod.DELETE)
-	public  @ResponseBody String deletar (@PathVariable("codCliente") String codCliente) throws Exception {
+	@RequestMapping(value = "deletar/{codCliente}", method = RequestMethod.DELETE)
+	public @ResponseBody String deletar(@PathVariable("codCliente") String codCliente) throws Exception {
 		Cliente objeto = new Cliente();
 		objeto.setId(new Long(codCliente));
 		super.deletar(objeto);
