@@ -1,9 +1,7 @@
 package curso.angular.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,23 +21,23 @@ public class ClienteController extends DaoImplementacao<Cliente> implements
 		super(persistenceClass); 
 	}
 	  
-	@RequestMapping(value="/listar", method=RequestMethod.GET, headers = "Accept=application/json") 
+	@RequestMapping(value="listar", method=RequestMethod.GET, headers = "Accept=application/json") 
 	@ResponseBody
 	public String listar() throws Exception {
-		List<Cliente> lista = new ArrayList<>();
-		Cliente cli = new Cliente();
-		cli.setId(10L);
-		cli.setNome("Marcio");
-		cli.setEndereco("Rua A");
-		cli.setTelefone("11 99999 8888");
-		lista.add(cli);
-		
-		cli = new Cliente();
-		cli.setId(10L);
-		cli.setNome("Juca");
-		cli.setEndereco("Rua B");
-		cli.setTelefone("11 8888 9797");
-		lista.add(cli);
-		return new Gson().toJson(lista); 
+		return new Gson().toJson(super.lista()); 
+	}
+	
+	/**
+	 * Delete o cliente informado
+	 * @param codCliente
+	 * @return String vazia como resposta
+	 * @throws Exception
+	 */
+	@RequestMapping(value="deletar/{codCliente}", method=RequestMethod.DELETE)
+	public  @ResponseBody String deletar (@PathVariable("codCliente") String codCliente) throws Exception {
+		Cliente objeto = new Cliente();
+		objeto.setId(new Long(codCliente));
+		super.deletar(objeto);
+		return "";
 	}
 }

@@ -87,8 +87,10 @@ app.config(function($routeProvider) {
 });
 
 
+
 app.controller('clienteController', function($scope, $http) {
 	
+	//Listar
 	$scope.listarClientes = function() {
 		$http.get("cliente/listar").success(function(response) {
 			$scope.data = response;
@@ -97,4 +99,16 @@ app.controller('clienteController', function($scope, $http) {
 		});
 	};
 	
+	
+	//remover cliente passado como parametro
+	$scope.removerCliente = function(codCliente) {
+		$http.delete("cliente/deletar/" + codCliente).success(function(response) {
+			$scope.listarClientes();
+		}).error(function(data, status, headers, config) {
+			erro("Error: " + status);
+		});
+	};
+	
 });
+
+
