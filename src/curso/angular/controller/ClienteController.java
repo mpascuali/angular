@@ -30,6 +30,7 @@ public class ClienteController extends DaoImplementacao<Cliente> implements DaoI
 	 * @return ResponseEntity
 	 * @throws Exception
 	 */
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "salvar", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity salvar(@RequestBody String jsonCliente) throws Exception {
@@ -60,5 +61,11 @@ public class ClienteController extends DaoImplementacao<Cliente> implements DaoI
 		objeto.setId(new Long(codCliente));
 		super.deletar(objeto);
 		return "";
+	}
+	
+	@RequestMapping(value = "buscarcliente/{codCliente}", method = RequestMethod.GET)
+	public @ResponseBody String buscarCliente(@PathVariable("codCliente") String codCliente) throws Exception {
+		Cliente objeto = super.loadObjeto(Long.parseLong(codCliente));
+		return new Gson().toJson(objeto);
 	}
 }

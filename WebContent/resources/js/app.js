@@ -88,7 +88,23 @@ app.config(function($routeProvider) {
 
 
 
-app.controller('clienteController', function($scope, $http) {
+app.controller('clienteController', function($scope, $http, $location, $routeParams) {
+	
+	if ($routeParams.id != null && $routeParams.id != undefined && $routeParams.id != ''){
+		
+		$http.get("cliente/buscarcliente/" + $routeParams.id).success(function(response) {
+			$scope.cliente = response;
+		}).error(function(data, status, headers, config) {
+			erro("Error: " + status);
+		});
+		
+	} else {
+		$scope.cliente = {};
+	}
+	
+	$scope.editarCliente = function(id) {
+		$location.path('clienteedit/' + id);
+	};
 	
 	$scope.cliente = {};
 	
