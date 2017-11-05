@@ -114,9 +114,10 @@ app.controller('clienteController', function($scope, $http, $location, $routePar
 		$http.post("cliente/salvar", $scope.cliente).success(function(response) {
 			
 			$scope.cliente = {};
+			sucesso("Salvo com Sucesso!");
 			
 		}).error(function(data, status, headers, config) {
-			alert("Erro" + status)
+			erro("Error: " + status);
 		});
 	};
 	
@@ -125,7 +126,7 @@ app.controller('clienteController', function($scope, $http, $location, $routePar
 		$http.get("cliente/listar").success(function(response) {
 			$scope.data = response;
 		}).error(function(response) {
-			alert.error("Erro" + response)
+			erro("Error: " + status);
 		});
 	};
 	
@@ -134,6 +135,7 @@ app.controller('clienteController', function($scope, $http, $location, $routePar
 	$scope.removerCliente = function(codCliente) {
 		$http.delete("cliente/deletar/" + codCliente).success(function(response) {
 			$scope.listarClientes();
+			sucesso("Deletado com Sucesso!");
 		}).error(function(data, status, headers, config) {
 			erro("Error: " + status);
 		});
@@ -141,3 +143,24 @@ app.controller('clienteController', function($scope, $http, $location, $routePar
 });
 
 
+//mostra msg de sucesso
+function sucesso(msg) {
+    	$.notify({
+        	message: msg
+
+        },{
+            type: 'success',
+            timer: 1000
+        });
+}
+
+//mostra msg de erro
+function erro(msg) {
+	$.notify({
+    	message: msg
+
+    },{
+        type: 'danger',
+        timer: 1000
+    });
+}
