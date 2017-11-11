@@ -2,10 +2,15 @@ package curso.angular.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.ForeignKey;
 
 /**
  * Modelo que representa a tabel de Cliente do banco
@@ -32,6 +37,18 @@ public class Cliente implements Serializable {
 	private Boolean ativo;
 	
 	private String interesse;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@ForeignKey(name="estados_fk")
+	private Estados estados = new Estados();
+	
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@ForeignKey(name="cidades_fk")
+	private Cidades cidades = new Cidades();
+	
+	@Column(columnDefinition="text")
+	private String foto;
 	
 	public String getInteresse() {
 		return interesse;
@@ -90,6 +107,30 @@ public class Cliente implements Serializable {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	
+	public Estados getEstados() {
+		return estados;
+	}
+
+	public void setEstados(Estados estados) {
+		this.estados = estados;
+	}
+
+	public Cidades getCidades() {
+		return cidades;
+	}
+
+	public void setCidades(Cidades cidades) {
+		this.cidades = cidades;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	@Override
