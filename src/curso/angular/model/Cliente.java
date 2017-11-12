@@ -38,6 +38,8 @@ public class Cliente implements Serializable {
 	
 	private String interesse;
 	
+	private String cpf;
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@ForeignKey(name="estados_fk")
 	private Estados estados = new Estados();
@@ -131,6 +133,14 @@ public class Cliente implements Serializable {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	@Override

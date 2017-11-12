@@ -22,14 +22,26 @@
 							<input type="file"  id="file"  onchange="javascript:visualizarImg();">
 						</div>
 					</div>
-					
+				</div>
+				
+				<div class="row">
+				
 					<div class="col-md-3">
 						<div class="form-group">
 							<label>Id</label> <input type="text" ng-model="cliente.id" value="20"
 								class="form-control border-input" disabled />
 						</div>
 					</div>
+					
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>CPF</label> <input type="text" ng-model="cliente.cpf" id="cpf"
+								class="form-control border-input" placeholder="CPF"
+								required="required">
+						</div>
+					</div>
 				</div>
+				
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
@@ -138,5 +150,6 @@
 	
 <script type="text/javascript">
 	$('#telefone').mask('(99) 9999-9999');
+	$('#cpf').mask('999.999.999-99');
 </script>
 </html>
